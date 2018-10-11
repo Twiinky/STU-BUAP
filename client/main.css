@@ -5,15 +5,49 @@ body {
     font-weight: 100;
     letter-spacing: 1px;
     margin:0;
+
 }
 
 .bg-primary{
 	background-color: #005580 ;
+	border: 1px solid #FFFFFF;
+	border-radius: 25px;
 }
 
 .text-cente{
+	color: #005580;
 	display: block;
     margin-left: auto;
     margin-right: auto;
     width: 15%;
+
+}
+
+.text-centerr{
+	text-align: center;
+	color: #005580;
+}
+
+input[type="submit"]{
+	color: #FFFFFF;
+	width: 100px;
+    margin-bottom: 10px;
+    background-color: #005580;
+    border: 3px solid #CEF6CE;
+    border-radius: 25px;
+}
+input[type="email"]{
+border-radius: 2px;
+}
+
+
+input[type="password"]{
+border-radius: 2px;	
+}
+
+.nav .navbar-nav .navbar-right{
+	color: #FFFFFF;
+	font-family: 'Helvetica', sans-serif;
+    font-weight: 100;
+    background-color: #F2F2F2;
 }
