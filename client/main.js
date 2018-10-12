@@ -56,10 +56,11 @@ Template.ingresar.events({
 	}
 });
 
+
+
 Template.MuestraCodigo.helpers({
 	'muestracodigo' : function(){
-		return Boletos.find({},
-		{sort : {createdAt: -1}});
+		return Meteor.userID();
 	}
 })
 

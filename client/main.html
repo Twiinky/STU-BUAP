@@ -65,10 +65,20 @@
 
 
 <template name="SesionUsuario">
-<h1 class="text-center">Código QR</h1>
-
+{{#if currentUser}}
+<h1 class="text-cente">Código</h1>
+<div class="text-center">
+{{> xvendo_barcoder id="idme" ean="1234567890123"}}
+</div>
+{{else}}
+<h1 class="text-center">No has iniciado sesión</h1>
+{{/if}}
 </template>
 
 <template name="SesionError">
 <h2 class="text-center">El usuario o contraseña son incorrectos</h2>  
+</template>
+
+<template name="MuestraCodigo">
+  <strong>Agregado por {{nombreUsuario}}</strong>
 </template>
