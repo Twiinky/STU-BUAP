@@ -56,7 +56,12 @@ Template.ingresar.events({
 	}
 });
 
-
+Template.codigo.onRendered(function () {
+    $('#qrcode').qrcode({
+      size: 200,
+      text: "201845534"
+    });
+  });
 
 Template.MuestraCodigo.helpers({
 	'muestracodigo' : function(){

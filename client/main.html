@@ -8,7 +8,10 @@
 </head>
 
 <body>
-
+<canvas id="ean" width="400" height="200"></canvas>
+    <script type="text/javascript">
+      $("#ean").EAN13("5901234123457");
+    </script>
 </body>
 
 <template name= "registro" > 
@@ -66,9 +69,11 @@
 
 <template name="SesionUsuario">
 {{#if currentUser}}
-<h1 class="text-cente">Código</h1>
+<h1 class="text-center">Código</h1>
+<div class="text-center"><span class="barcode">*201245534*</span></div>
 <div class="text-center">
-{{> xvendo_barcoder id="idme" ean="1234567890123"}}
+{{> xvendo_barcoder id="idme" ean="000201245534"}}
+{{> codigo}}
 </div>
 {{else}}
 <h1 class="text-center">No has iniciado sesión</h1>
@@ -81,4 +86,8 @@
 
 <template name="MuestraCodigo">
   <strong>Agregado por {{nombreUsuario}}</strong>
+</template>
+
+<template name="codigo">   
+  <div class="text-center" id="qrcode"></div>
 </template>
