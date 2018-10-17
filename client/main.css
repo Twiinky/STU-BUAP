@@ -8,7 +8,17 @@ body {
 
 }
 
+.font-weight-bold{
+	font-size: 110px;
+	color: #005580;
+	text-align: center;
+	text-decoration: underline;
+	text-shadow: 5px 5px #CEF6CE;
+	font-weight: bold;
+}
+
 .bg-primary{
+
 	background-color: #005580 ;
 	border: 1px solid #FFFFFF;
 	border-radius: 25px;
