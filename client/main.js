@@ -1,8 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import {Mongo} from 'meteor/mongo';
-Boletos = new Mongo.Collection('boletos');
-
+import { Boletos } from './lib/collections.js';
+B = new Mongo.Collection('b');
 import './main.html';
 
 Router.configure({
@@ -22,10 +21,16 @@ Template.registro.events({
 		event.preventDefault();
 		var email = $('[name=email]').val();
 		var password = $('[name=password]').val();
+		var listName = $('[name=listName]').val();
 		Accounts.createUser({
             email: email,
-            password: password
+            password: password,
+            
         });
+      B.insert({
+          listName: listName
+      });
+      $('[name=listName]').val('');
 		Router.go('SesionUsuario');
 	}
 });
@@ -55,12 +60,32 @@ Template.ingresar.events({
 		
 	}
 });
+Template.inicio.events({
+	'submit .inicio': function(event){
+		event.preventDefault();
+		var title = event.target.title.value;
+		Boletos.insert({
+			title: title,
+			createdAt: new Date()
+		});
+		event.target.title.value="";
+		return false;
+	}
+});
 
 Template.codigo.onRendered(function () {
     $('#qrcode').qrcode({
-      size: 200,
-      text: "201345534"
+      size: 250,
+      text: "201345534",
+      background: '#F2F2F2',
+      //mode: 2,
+      //label: '201345534',
+      //fontname: 'Helvetica',
+      //fontcolor: '#005580',
+      fill: '#005580',
+      //image: '/buap.png'
     });
+    return false;
   });
 
 Template.MuestraCodigo.helpers({

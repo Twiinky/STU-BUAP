@@ -14,7 +14,7 @@
 <template name= "registro" > 
 <h2 class="text-centerr"> Registrar </h2> 
 <form class= "registro" > 
-<p class="text-cente">Matricula: <input type= "email" name= "email" ></p> 
+<p class="text-cente">Correo: <input type= "email" name= "email" ></p> 
 <p class="text-cente"> Contraseña: <input type= "password" name= "password" ></p> 
 <p class="text-center"><input type= "submit" value= "Registrar" ></p> 
 </form> 
@@ -31,6 +31,7 @@
 
  <template name= "inicio" > 
  <h2 class="text-center">Bienvenidos</h2>
+
 </template> 
 
 <template name= "principal" > <h1 class="text-center p-3 mb-2 bg-primary text-white"> Sistema de Trasporte Universitario </h1> 
@@ -71,9 +72,10 @@
 <!--{{> xvendo_barcoder id="idme" ean="000201245534"}}-->
 {{> codigo}}
 </div>
-<hr /><div class="text-center"><h3>Numero de boletos dispónibles</h3></div>
+<hr /><div class="text-center"><h3>Boletos dispónibles</h3></div>
 <h1 class="font-weight-bold">9</h1>
-<strong>9</strong>
+
+
 {{else}}
 <h1 class="text-center">No has iniciado sesión</h1>
 {{/if}}
@@ -89,5 +91,5 @@
 
 <template name="codigo">
   <h1 class="text-cente">201345534</h1>
-  <div class="text-center" id="qrcode"></div>
+  <div class="text-centerr" id="qrcode"></div>
 </template>
