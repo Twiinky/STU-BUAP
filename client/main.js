@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Boletos } from './lib/collections.js';
-B = new Mongo.Collection('b');
+import { Boletos } from '../lib/collections.js';
+
 import './main.html';
 
 Router.configure({
@@ -21,16 +21,24 @@ Template.registro.events({
 		event.preventDefault();
 		var email = $('[name=email]').val();
 		var password = $('[name=password]').val();
-		var listName = $('[name=listName]').val();
+		var matricula = $('[name=matricula]').val();
+
+
 		Accounts.createUser({
             email: email,
             password: password,
-            
+        
         });
-      B.insert({
-          listName: listName
-      });
-      $('[name=listName]').val('');
+		const mat=String(matricula);
+    
+		Boletos.insert({
+       		matricula: matricula,
+       		correo: email,
+
+   		});
+     
+      
+      
 		Router.go('SesionUsuario');
 	}
 });
@@ -43,6 +51,7 @@ Template.navegacion.events({
 	}
 });
 
+var hola="hola";
 Template.ingresar.events({
 	'submit form': function(event){
 		event.preventDefault();
@@ -53,30 +62,21 @@ Template.ingresar.events({
         console.log(error.reason);
         Router.go('SesionError');
     } else {
+    	hola=email;
         Router.go('SesionUsuario');
+        var m=Boletos.distinct("matricula",{correo: email}).toString();
+    	 console.log(m);
     }
 });
 		
-		
-	}
-});
-Template.inicio.events({
-	'submit .inicio': function(event){
-		event.preventDefault();
-		var title = event.target.title.value;
-		Boletos.insert({
-			title: title,
-			createdAt: new Date()
-		});
-		event.target.title.value="";
-		return false;
 	}
 });
 
 Template.codigo.onRendered(function () {
+
     $('#qrcode').qrcode({
       size: 250,
-      text: "201345534",
+      text: "201245534",
       background: '#F2F2F2',
       //mode: 2,
       //label: '201345534',
@@ -94,3 +94,13 @@ Template.MuestraCodigo.helpers({
 	}
 })
 
+
+Template.codigo.helpers({
+	'matricul': function(){
+	h=Boletos.find({matricula:"0"});
+
+	return (hola);
+	}	
+	
+	
+});
