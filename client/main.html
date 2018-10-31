@@ -1,98 +1,94 @@
-<head>
-  <title>Sistema_Boletos_Buap</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+    <head>
+      <title>Sistema_Boletos_Buap</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
 
-<body>
+    <body>
 
-</body>
+    </body>
 
-<template name= "registro" > 
-<h2 class="text-centerr"> Registrar </h2> 
-<form class= "registro" > 
-<p class="text-cente">Matricula: <input type= "matricula" name= "matricula" ></p> 
-<p class="text-cente">Correo: <input type= "email" name= "email" ></p> 
-<p class="text-cente"> Contraseña: <input type= "password" name= "password" ></p> 
-<p class="text-center"><input type= "submit" value= "Registrar" ></p> 
-</form> 
-</template> 
+    <template name= "registro" > 
+      <h2 class="text-centerr"> Registrar </h2> 
+      <form class= "registro" > 
+        <p class="text-cente">Matricula: <input type= "matricula" name= "matricula" ></p> 
+        <p class="text-cente">Correo: <input type= "email" name= "email" ></p> 
+        <p class="text-cente"> Contraseña: <input type= "password" name= "password" ></p> 
+        <p class="text-center"><input type= "submit" value= "Registrar" ></p> 
+      </form> 
+    </template> 
 
-<template name="ingresar">
-    <h2 class="text-centerr">Ingresar</h2>
-    <form class="ingresar">
+    <template name="ingresar">
+      <h2 class="text-centerr">Ingresar</h2>
+      <form class="ingresar">
         <p class="text-cente">Correo: <input type="email" name="email"></p>
         <p class="text-cente">Contraseña: <input type="password" name="password"></p>
         <p class="text-center"><input type="submit" value="ingresar"></p>
-    </form>
-</template>
+      </form>
+    </template>
 
- <template name= "inicio" > 
- <h2 class="text-center">Bienvenidos</h2>
-</template> 
+    <template name= "inicio" > 
+     <h2 class="text-center">Bienvenidos</h2>
+   </template> 
 
-<template name= "principal" > <h1 class="text-center p-3 mb-2 bg-primary text-white"> Sistema de Trasporte Universitario </h1> 
-{{> navegacion}}
-{{> yield }}
-<hr /> <p class="text-center">BUAP, 2018. </p> 
-</template>
+   <template name= "principal" > <h1 class="text-center p-3 mb-2 bg-primary text-white"> Sistema de Trasporte Universitario </h1> 
+    {{> navegacion}}
+    {{> yield }}
+    <hr /> <p class="text-center">BUAP, 2018. </p> 
+  </template>
 
-<template name= "navegacion" > 
-<ul>
+  <template name= "navegacion" > 
+    <ul>
+      {{#if currentUser}}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{pathFor route='registro'}}" class="logout">Cerrar Sesion</a></li>
+      </ul>
+      {{else}}
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{pathFor route='ingresar'}}">Entrar</a></li>
+            <li><a href="{{pathFor route='registro'}}">Registar</a></li>
+            <li><a href="{{pathFor route='inicio'}}">Inicio</a></li>
+          </ul>
+        </div>
+      </nav>
+      {{/if}}
+    </ul>
+  </template>
+
+
+  <template name="SesionUsuario">
     {{#if currentUser}}
-    <ul class="nav navbar-nav navbar-right">
-    <li><a href="{{pathFor route='registro'}}" class="logout">Cerrar Sesion</a></li>
-    </ul>
-    {{else}}
-
-    <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      
+    <!--<div class="text-center"><span class="barcode">*201245534*</span></div>-->
+    <div class="text-center">
+      <!--{{> xvendo_barcoder id="idme" ean="000201245534"}}-->
+      {{> codigo}}
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{pathFor route='ingresar'}}">Entrar</a></li>
-    <li><a href="{{pathFor route='registro'}}">Registar</a></li>
-    <li><a href="{{pathFor route='inicio'}}">Inicio</a></li>
-    </ul>
-  </div>
-</nav>
+
+    <h1 class="font-weight-bold">9</h1>
+    <hr /><div class="text-center"><h3>Boletos dispónibles</h3></div>
+
+    {{else}}
+    <h1 class="text-center">No has iniciado sesión</h1>
     {{/if}}
-</ul>
-</template>
+  </template>
+
+  <template name="SesionError">
+    <h2 class="text-center">El usuario o contraseña son incorrectos</h2>  
+  </template>
 
 
-<template name="SesionUsuario">
-{{#if currentUser}}
-<!--<div class="text-center"><span class="barcode">*201245534*</span></div>-->
-<div class="text-center">
-<!--{{> xvendo_barcoder id="idme" ean="000201245534"}}-->
-{{> codigo}}
-</div>
-
-<h1 class="font-weight-bold">9</h1>
-<hr /><div class="text-center"><h3>Boletos dispónibles</h3></div>
-
-{{else}}
-<h1 class="text-center">No has iniciado sesión</h1>
-{{/if}}
-</template>
-
-<template name="SesionError">
-<h2 class="text-center">El usuario o contraseña son incorrectos</h2>  
-</template>
-
-<template name="MuestraCodigo">
-  <strong>Agregado por {{nombreUsuario}}</strong>
-</template>
-
-<template name="codigo">
-<h1 class="text-center">matricula:
- {{matricul}}
- </h1>
- 
-  <div class="text-centerr" id="qrcode"></div>
-</template>
+  <template name="codigo">
+    <h1 class="text-center">
+     {{matricul}}
+   </h1>
+   <div class="text-centerr" id="qrcode"></div>
+  </template>

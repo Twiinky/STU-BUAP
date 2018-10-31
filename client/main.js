@@ -16,20 +16,23 @@ Router.route('/',{
 	template:'inicio'
 });
 
+var token;
+var token2;
+var token3;
 Template.registro.events({
 	'submit form': function(event){
 		event.preventDefault();
 		var email = $('[name=email]').val();
 		var password = $('[name=password]').val();
 		var matricula = $('[name=matricula]').val();
-
-
+		token=email;
+		token2=matricula;
 		Accounts.createUser({
             email: email,
             password: password,
         
         });
-		const mat=String(matricula);
+		
     
 		Boletos.insert({
        		matricula: matricula,
@@ -51,7 +54,6 @@ Template.navegacion.events({
 	}
 });
 
-var hola="hola";
 Template.ingresar.events({
 	'submit form': function(event){
 		event.preventDefault();
@@ -62,10 +64,8 @@ Template.ingresar.events({
         console.log(error.reason);
         Router.go('SesionError');
     } else {
-    	hola=email;
+    	token=email;
         Router.go('SesionUsuario');
-        var m=Boletos.distinct("matricula",{correo: email}).toString();
-    	 console.log(m);
     }
 });
 		
@@ -73,10 +73,9 @@ Template.ingresar.events({
 });
 
 Template.codigo.onRendered(function () {
-
     $('#qrcode').qrcode({
       size: 250,
-      text: "201245534",
+      text: token2,
       background: '#F2F2F2',
       //mode: 2,
       //label: '201345534',
@@ -88,19 +87,18 @@ Template.codigo.onRendered(function () {
     return false;
   });
 
-Template.MuestraCodigo.helpers({
-	'muestracodigo' : function(){
-		return Meteor.userID();
-	}
-})
+
 
 
 Template.codigo.helpers({
 	'matricul': function(){
-	h=Boletos.find({matricula:"0"});
 
-	return (hola);
+	var matricula_codigo=Boletos.findOne({correo:token});
+	var newmatricula_codigo=matricula_codigo.matricula;
+
+	console.log(newmatricula_codigo);
+	token2=newmatricula_codigo;
+	//console.log(typeof newmatricula_codigo);
+	return(newmatricula_codigo);
 	}	
-	
-	
 });
