@@ -11,7 +11,10 @@
 
     </body>
 
+
+<!--Usuario-->
     <template name= "registro" > 
+      
       <h2 class="text-centerr"> Registrar </h2> 
       <form class= "registro" > 
         <p class="text-cente">Matricula: <input type= "matricula" name= "matricula" ></p> 
@@ -22,6 +25,7 @@
     </template> 
 
     <template name="ingresar">
+      
       <h2 class="text-centerr">Ingresar</h2>
       <form class="ingresar">
         <p class="text-cente">Correo: <input type="email" name="email"></p>
@@ -30,15 +34,34 @@
       </form>
     </template>
 
-    <template name= "inicio" > 
+    <template name= "inicio" >
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{pathFor route='navegacion'}}">Usuario</a></li>
+            <li><a href="{{pathFor route='navegacionVendedor'}}">Vendedor</a></li>
+            <li><a href="{{pathFor route='navegacion'}}">Chofer</a></li>
+          </ul>
+        </div>
+      </nav>
      <h2 class="text-center">Bienvenidos</h2>
    </template> 
 
    <template name= "principal" > <h1 class="text-center p-3 mb-2 bg-primary text-white"> Sistema de Trasporte Universitario </h1> 
-    {{> navegacion}}
+    {{> inicio}}
     {{> yield }}
     <hr /> <p class="text-center">BUAP, 2018. </p> 
   </template>
+
+    <!--<template name="principalVendedor">
+    <h1 class="text-center p-3 mb-2 bg-primary text-white"> Sistema de Trasporte Universitario </h1> 
+      {{> navegacionVendedor}}
+      {{> yield }}
+    <hr /> <p class="text-center">BUAP, 2018. </p> 
+    </template> -->
 
   <template name= "navegacion" > 
     <ul>
@@ -73,7 +96,7 @@
       {{> codigo}}
     </div>
 
-    <h1 class="font-weight-bold">9</h1>
+    <h1 class="font-weight-bold">{{boleto}}</h1>
     <hr /><div class="text-center"><h3>Boletos dispónibles</h3></div>
 
     {{else}}
@@ -92,3 +115,67 @@
    </h1>
    <div class="text-centerr" id="qrcode"></div>
   </template>
+
+  
+
+  <!--Vendedor-->
+<template name= "registroVendedor" > 
+      <h2 class="text-centerr"> Registrar vendedor </h2> 
+      <form class= "registro" > 
+        <p class="text-cente">Matricula: <input type= "matricula" name= "matricula" ></p> 
+        <p class="text-cente">Correo: <input type= "email" name= "email" ></p> 
+        <p class="text-cente"> Contraseña: <input type= "password" name= "password" ></p> 
+        <p class="text-center"><input type= "submit" value= "Registrar" ></p> 
+      </form> 
+    </template> 
+
+<template name="ingresarVendedor">
+      <h2 class="text-centerr">Ingresar Vendedor</h2>
+      <form class="ingresar">
+        <p class="text-cente">Correo: <input type="email" name="email"></p>
+        <p class="text-cente">Contraseña: <input type="password" name="password"></p>
+        <p class="text-center"><input type="submit" value="ingresar"></p>
+      </form>
+    </template>
+
+<template name= "navegacionVendedor" > 
+    <ul>
+      {{#if currentUser}}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{pathFor route='registroVendedor'}}" class="logout">Cerrar Sesion Vendedor</a></li>
+      </ul>
+      {{else}}
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{pathFor route='ingresarVendedor'}}">Entrar Vendedor</a></li>
+            <li><a href="{{pathFor route='registroVendedor'}}">Registar Vendedor</a></li>
+            <li><a href="{{pathFor route='inicio'}}">Inicio</a></li>
+          </ul>
+        </div>
+      </nav>
+      {{/if}}
+    </ul>
+  </template>
+
+<template name="SesionVendedor">
+    {{#if currentUser}}
+    <h1 class="font-weight-bold">{{vendedor}}</h1>
+    <hr /><div class="text-center"><h3>Vendedor</h3></div>
+
+    {{else}}
+    <h1 class="text-center">No has iniciado sesión</h1>
+    {{/if}}
+  </template>
+
+
+
+
+
+
+
+  <!--Chofer-->
