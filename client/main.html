@@ -14,7 +14,7 @@
 
 <!--Usuario-->
     <template name= "registro" > 
-      
+      {{> navegacion}}
       <h2 class="text-centerr"> Registrar </h2> 
       <form class= "registro" > 
         <p class="text-cente">Matricula: <input type= "matricula" name= "matricula" ></p> 
@@ -25,7 +25,7 @@
     </template> 
 
     <template name="ingresar">
-      
+      {{> navegacion}}
       <h2 class="text-centerr">Ingresar</h2>
       <form class="ingresar">
         <p class="text-cente">Correo: <input type="email" name="email"></p>
@@ -46,12 +46,13 @@
             <li><a href="{{pathFor route='navegacion'}}">Chofer</a></li>
           </ul>
         </div>
-      </nav>
+      </nav> 
      <h2 class="text-center">Bienvenidos</h2>
    </template> 
 
    <template name= "principal" > <h1 class="text-center p-3 mb-2 bg-primary text-white"> Sistema de Trasporte Universitario </h1> 
-    {{> inicio}}
+    <!-- {{> inicio}}
+    {{> navegacion}} -->
     {{> yield }}
     <hr /> <p class="text-center">BUAP, 2018. </p> 
   </template>
@@ -77,7 +78,8 @@
 
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{pathFor route='ingresar'}}">Entrar</a></li>
+            <li><a href="{{pathFor route='ingresar'}}">Entrar</a> </li>
+
             <li><a href="{{pathFor route='registro'}}">Registar</a></li>
             <li><a href="{{pathFor route='inicio'}}">Inicio</a></li>
           </ul>
@@ -89,6 +91,7 @@
 
 
   <template name="SesionUsuario">
+    {{> navegacion}}
     {{#if currentUser}}
     <!--<div class="text-center"><span class="barcode">*201245534*</span></div>-->
     <div class="text-center">
@@ -120,6 +123,7 @@
 
   <!--Vendedor-->
 <template name= "registroVendedor" > 
+      {{> navegacionVendedor}}
       <h2 class="text-centerr"> Registrar vendedor </h2> 
       <form class= "registro" > 
         <p class="text-cente">Matricula: <input type= "matricula" name= "matricula" ></p> 
@@ -130,6 +134,7 @@
     </template> 
 
 <template name="ingresarVendedor">
+      {{> navegacionVendedor}}
       <h2 class="text-centerr">Ingresar Vendedor</h2>
       <form class="ingresar">
         <p class="text-cente">Correo: <input type="email" name="email"></p>
@@ -163,10 +168,11 @@
   </template>
 
 <template name="SesionVendedor">
+    {{> navegacionVendedor}}
     {{#if currentUser}}
     <h1 class="font-weight-bold">{{vendedor}}</h1>
     <hr /><div class="text-center"><h3>Vendedor</h3></div>
-
+    <input type="number" class="numeroBoletosAVender" data-zeros="true" min="0" max="5">
     {{else}}
     <h1 class="text-center">No has iniciado sesión</h1>
     {{/if}}
