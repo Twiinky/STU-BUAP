@@ -40,7 +40,7 @@ body {
 
 input[type="submit"]{
 	color: #FFFFFF;
-	width: 100px;
+	width: 150px;
     margin-bottom: 10px;
     background-color: #005580;
     border: 3px solid #CEF6CE;
@@ -67,7 +67,24 @@ border-radius: 2px;
     
 }
 
-.numeroBoletosAVender {
+.numeroBoletosAVender{
+	
+	margin: 0 auto;
+	font-size: 80px;
+	text-align: center;
+	height: 80px;
+	width: 120px;
    border-radius: 5px;
-   border: 1px solid #39c;
+   border: 3px solid #39c;
  }
+
+.btn{
+	font-size: 20px;
+	text-align: center;
+	height: 40px;
+	width: 60px;
+   border-radius: 5px;
+   border: 3px solid #39c;
+    background-color:green;
+    color:#fff;
+}

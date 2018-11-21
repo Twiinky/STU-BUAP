@@ -170,15 +170,27 @@
 <template name="SesionVendedor">
     {{> navegacionVendedor}}
     {{#if currentUser}}
-    <h1 class="font-weight-bold">{{vendedor}}</h1>
-    <hr /><div class="text-center"><h3>Vendedor</h3></div>
-    <input type="number" class="numeroBoletosAVender" data-zeros="true" min="0" max="5">
+    <hr /><div class="text-centee"><h3>Vendedor:{{vendedor}}</h3></div> 
+        <p class="text-center">Numero de boletos:</p> <p><div class="text-center"><input type="number" class="numeroBoletosAVender" data-zeros="true" min="1" max="10"></div></p>
+        <p class="text-center"><input type="submit" value="
+        Vender Boletos"></p>
+
+        <button type="button" class="btn" disabled="disabled">$</button>
+      
     {{else}}
     <h1 class="text-center">No has iniciado sesión</h1>
     {{/if}}
   </template>
 
-
+<template name="ScannearCodigo">
+  <div class="scanea">
+    <button type="button" class="btn">Escanear Código</button>
+    <button type="button" class="btn">Introducir Código</button>
+    <p class="text-cente"><input type="password" name="password"></p>
+    <button type="button" class="btn">Enviar</button>
+  </div>
+  <button type="button" class="btn">Cancelar</button>
+</template>
 
 
 

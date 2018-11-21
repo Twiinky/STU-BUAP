@@ -21,6 +21,8 @@ Router.route('/SesionUsuario');
 Router.route('/SesionVendedor');
 Router.route('/SesionChofer');
 
+Router.route('/ScannearCodigo');
+
 Router.route('/SesionError');
 Router.route('/',{
 	name:'inicio',
@@ -134,6 +136,14 @@ Template.ingresarVendedor.events({
     }
 });
 		
+	}
+});
+
+
+Template.SesionVendedor.events({
+'submit form': function(event){
+		event.preventDefault();
+		Router.go('ScannearCodigo');
 	}
 });
 Template.codigo.onRendered(function () {
